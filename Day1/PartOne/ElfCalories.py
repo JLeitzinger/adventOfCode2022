@@ -21,5 +21,8 @@ elfGroups = elfParse(elfList)
     
 
 elfCarry = [sum(x) for x in elfGroups]
+elfCarry.sort(reverse=True)
+
 
 print(f'The max carries calories is: {max(elfCarry)}')
+print(f'The sum of the top 3 elvs is: {sum(elfCarry[:3])}')
