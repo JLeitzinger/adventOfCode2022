@@ -52,8 +52,7 @@ def anyOverlap(a1, a2):
     print('\nThe Number of any overlaps:')
     print(sum(overList))
 
-
-def main():
+if __name__=='__main__':
     print('Running Main')
     assignments = readFile('./Day4/cleaning.txt')
 
@@ -63,8 +62,4 @@ def main():
     print('Running set analysis')
     overlap(a1, a2)
     anyOverlap(a1, a2)
-
-
-if __name__=='__main__':
-    main()
 
