@@ -22,13 +22,17 @@ for ruck in rucks:
 
     sameList.append(first.intersection(second))
 
+sameSave = []
+
 for prio in sameList:
-    prioVal = ord(prio) - 96
+    prioLetter = prio.pop()
+    sameSave.append(prioLetter)
+    prioVal = ord(prioLetter) - 96
     
     if prioVal > 0:
         prioList.append(prioVal)
     else:
-        prioVal+= 57
+        prioVal+= 58
         prioList.append(prioVal)
 
 sum(prioList)
