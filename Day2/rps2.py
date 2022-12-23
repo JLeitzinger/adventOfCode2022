@@ -21,27 +21,34 @@ with open(f'./Day2/rps.txt', 'r') as f:
 turns = [x.split(' ') for x in guide.splitlines()]
 results = []
 
-for turn in turns:
-    opp = Action(turn[0])
-    me = Action(turn[1])
+win = 6
+lose = 0
+draw = 3
 
-    if opp == me:
-        results.append('draw')
-    elif opp == Action.Rock:
-        if me == Action.Scissors:
-            results.append('lose')
-        else:
-            results.append('win')
-    elif opp == Action.Paper:
-        if me == Action.Rock:
-            results.append('lose')
-        else:
-            results.append('win')
+for turn in turns:
+
+    opp = ord(turn[0]) - 65
+    res = ord(turn[1]) - 88
+
+    print(opp)
+    print(res)
+
+    if res == 1:
+        oppRes = [1,2,3]
+        result = oppRes[opp] + draw
+        results.append(result)
+
+    elif res == 0:
+        oppRes = [3, 1, 2]
+        result = oppRes[opp] + lose
+        results.append(result)
+    
     else:
-        if me == Action.Paper:
-            results.append('lose')
-        else:
-            results.append('win')
+        oppRes = [2, 3, 1]
+        result = oppRes[opp] + win
+        results.append(result)
 
 print(results)
-    
+
+endResult = sum(results)
+print(f'The Total for all rounds: {endResult}')
