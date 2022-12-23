@@ -20,14 +20,7 @@ def parseAssignments(assignments:list[str]):
 
     return a1, a2
 
-def main():
-    print('Running Main')
-    assignments = readFile('./Day4/cleaning.txt')
-
-    print('Read in Assignments')
-    a1, a2 = parseAssignments(assignments)
-
-    print('Running set analysis')
+def overlap(a1, a2):
     overList = []
 
     for a1, a2 in zip(a1, a2):
@@ -41,7 +34,35 @@ def main():
         else:
             overList.append(False)
     
+    print('The Number of complete overlap:')
     print(sum(overList))
+
+def anyOverlap(a1, a2):
+    overList = []
+
+    for a1, a2 in zip(a1, a2):
+        a1Check = (a1[0]>=a2[0]) & (a1[0]<=a2[1])
+        a2Check = (a2[0]>=a1[0]) & (a2[0]<=a1[1])
+
+        if(a1Check | a2Check):
+            overList.append(True)
+        else:
+            overList.append(False)
+
+    print('\nThe Number of any overlaps:')
+    print(sum(overList))
+
+
+def main():
+    print('Running Main')
+    assignments = readFile('./Day4/cleaning.txt')
+
+    print('Read in Assignments')
+    a1, a2 = parseAssignments(assignments)
+
+    print('Running set analysis')
+    overlap(a1, a2)
+    anyOverlap(a1, a2)
 
 
 if __name__=='__main__':
