@@ -81,19 +81,34 @@ def moveTo(crateDict, dest, val):
     crateDict[dest].insert(0, val)
     return crateDict
 
-def engine(moves, crates):
+def engine(moves, crates, machine):
     for move in moves:
 
         timesMove = int(move[0])
         fromMove = move[1]
         toMove = move[2]
 
+        if machine == '9000':
+            for i in range(timesMove):
+                crates, val = moveFrom(crates, fromMove)
+                crates = moveTo(crates, toMove, val)
+                print(f'Moving {val} \nFrom: {fromMove} \nTo: {toMove}')
+        elif machine == '9001':
+            moveList = []
 
-        for i in range(timesMove):
-            crates, val = moveFrom(crates, fromMove)
-            crates = moveTo(crates, toMove, val)
-            print(f'Moving {val} \nFrom: {fromMove} \nTo: {toMove}')
+            # Make the move list
+            for i in range(timesMove):
+                crates, val = moveFrom(crates, fromMove)
+                moveList.append(val)
             
+            for crate in moveList[::-1]:
+                crates = moveTo(crates, toMove, crate)
+
+
+
+
+        else:
+            print('Please select an appropriate Machine')
     
     return(crates)
 
@@ -116,7 +131,7 @@ if __name__=='__main__':
     
     # Run the engine
 
-    endPos = engine(moves, crates)
+    endPos = engine(moves, crates, machine='9001')
 
     print(endPos)
 
@@ -124,4 +139,4 @@ if __name__=='__main__':
     for k, v in endPos.items():
         endList.append(v[0])
 
-    print(endList)
+    print(''.join(endList))
